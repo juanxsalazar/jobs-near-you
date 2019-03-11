@@ -1,13 +1,13 @@
 {
   "private": true,
   "name": "jobs-near-you",
-  "homepage": "https://jobs-near-you-.netlify.com",
+  "homepage": "https://jobs-near-you-juanxsalazar.netlify.com",
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
     "predeploy": "react-scripts build",
     "deploy": "netlify deploy --prod --dir=build",
-    "postdeploy": "echo 'Your site was deployed to https://jobs-near-you-.netlify.com'",
+    "postdeploy": "echo 'Your site was deployed to https://jobs-near-you-juanxsalazar.netlify.com'",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
