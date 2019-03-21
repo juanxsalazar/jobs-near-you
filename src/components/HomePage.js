@@ -9,7 +9,7 @@ class HomePage extends Component {
     <button>Search</button>
     <div id="map">Map Goes Here</div>
   
-<footer> Persistency is key</footer>
+<footer> </footer>
     </>
   }
 }
