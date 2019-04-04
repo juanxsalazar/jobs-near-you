@@ -21,11 +21,17 @@ class Map extends Component {
         this.setState({ viewport })
       }
       
+      navStyle = {
+        position: 'absolute',
+        top: 0,
+        left: 0,
+        padding: '10px'
+      }
+
     render() {
         const { viewport } = this.state
 
         return (
-            <>
     <div id="map">
     <MapGL
       {...viewport}
@@ -34,9 +40,12 @@ class Map extends Component {
       mapStyle="mapbox://styles/mapbox/dark-v9"
       mapboxApiAccessToken="pk.eyJ1IjoianVhbjIzc2FsYXphciIsImEiOiJjanUyaW0xMWIwY3QxNDRvN3ZnMW91N3BxIn0._YtrtrN7f2ba2F4S3HVL2Q"
       onViewportChange={this._updateViewport}
-   />
+   >
+   <div className="nav" style={this.navStyle}>
+          <NavigationControl onViewportChange={this._updateViewport}/>
+        </div>
+        </MapGL>
                     </div>
-            </>
         );
     }
 }
