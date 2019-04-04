@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import axios from 'axios'
+import BusinessListItem from './BusinessListItem'
+
 class BusinessList extends Component {
 state = {
     businesses: []
@@ -17,9 +19,8 @@ componentDidMount() {
               <ul>
                   {
                       this.state.businesses.map(business => 
-                      <li>{business.name}</li>
-                      )
-                  }
+                    <BusinessListItem key={business.id} business={business} />
+                      )}
             </ul>  
             </div>
         );
