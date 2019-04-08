@@ -8,6 +8,7 @@ class Map extends Component {
     super(props);
 
     this.state = {
+      popupInfo: null, 
       viewport: {
         latitude: 27.7700989,
         longitude: -82.6364093,
@@ -29,6 +30,32 @@ class Map extends Component {
     padding: "10px"
   };
 
+  renderPopup = () => {
+    const { popupInfo } = this.state
+  
+    if (!popupInfo) {
+      return
+    }
+  
+    return (
+      <Popup
+        tipSize={5}
+        anchor="top"
+        longitude={popupInfo.longitude}
+        latitude={popupInfo.latitude}
+        closeOnClick={false}
+        onClose={() => {
+          this.setState({ popupInfo: null })
+        }}
+      >
+        <div>
+          <p>{popupInfo.name}</p>
+          <p>{popupInfo.address}</p>
+        </div>
+      </Popup>
+    )
+  }
+
   render() {
     const { viewport } = this.state;
 
@@ -42,6 +69,7 @@ class Map extends Component {
           mapboxApiAccessToken="pk.eyJ1IjoianVhbjIzc2FsYXphciIsImEiOiJjanUyaW0xMWIwY3QxNDRvN3ZnMW91N3BxIn0._YtrtrN7f2ba2F4S3HVL2Q"
           onViewportChange={this._updateViewport}
         >
+          {this.renderPopup()}  
         {this.props.businesses.map(business => (
           <Marker
             latitude={business.latitude}
@@ -49,7 +77,14 @@ class Map extends Component {
             offsetTop={-64}
             offsetLeft={-32}
           >
-            <img width={64} height={64} src={cash} />
+            <img 
+            width={64} 
+            height={64} 
+            src={cash}
+            onClick={() => {
+              this.setState({ popupInfo: business })
+            }} 
+            />
           </Marker>
 ))}
           <div className="nav" style={this.navStyle}>
