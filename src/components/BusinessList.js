@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import axios from 'axios'
 import BusinessListItem from './BusinessListItem'
+import Map from '../components/Map'
 
 class BusinessList extends Component {
 state = {
@@ -16,6 +17,7 @@ componentDidMount() {
     render() {
         return (
             <div>
+                    <Map businesses={this.state.businesses} />
               <ul>
                   {
                       this.state.businesses.map(business => 

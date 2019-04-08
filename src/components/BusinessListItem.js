@@ -5,7 +5,7 @@ class BusinessListItem extends Component {
         return (
             <div>
                 <li>
-                {this.props.business.name}    
+                {this.props.business.name}, {this.props.business.address}    
                 </li>
             </div>
         );

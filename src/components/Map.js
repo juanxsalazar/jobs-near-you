@@ -33,7 +33,7 @@ class Map extends Component {
     const { viewport } = this.state;
 
     return (
-      <div id="map">
+      <div className="map">
         <MapGL
           {...viewport}
           width="100%"
@@ -42,15 +42,16 @@ class Map extends Component {
           mapboxApiAccessToken="pk.eyJ1IjoianVhbjIzc2FsYXphciIsImEiOiJjanUyaW0xMWIwY3QxNDRvN3ZnMW91N3BxIn0._YtrtrN7f2ba2F4S3HVL2Q"
           onViewportChange={this._updateViewport}
         >
+        {this.props.businesses.map(business => (
           <Marker
-            latitude={27.7712188}
-            longitude={-82.6697279536116}
+            latitude={business.latitude}
+            longitude={business.longitude}
             offsetTop={-64}
             offsetLeft={-32}
           >
             <img width={64} height={64} src={cash} />
           </Marker>
-
+))}
           <div className="nav" style={this.navStyle}>
             <NavigationControl onViewportChange={this._updateViewport} />
           </div>
