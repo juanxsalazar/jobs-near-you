@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import MapGL, { Marker, NavigationControl, Popup } from "react-map-gl";
-// import ppl from '../images/ppl.png'
+import ppl from '../images/ppl.png'
 import cash from "../images/cash.png";
 
 class Map extends Component {
@@ -8,6 +8,7 @@ class Map extends Component {
     super(props);
 
     this.state = {
+      userLocation: null,
       popupInfo: null, 
       viewport: {
         latitude: 27.7700989,
@@ -18,6 +19,17 @@ class Map extends Component {
       }
     };
   }
+
+  componentDidMount() {
+    navigator.geolocation.getCurrentPosition(position => {
+      const { latitude, longitude } = position.coords
+
+      this.setState({
+        userLocation: { lat: latitude, lng: longitude }
+      })
+    })
+  }
+
 
   _updateViewport = viewport => {
     this.setState({ viewport });
@@ -48,9 +60,10 @@ class Map extends Component {
           this.setState({ popupInfo: null })
         }}
       >
-        <div>
+        <div className="infobox">
           <p>{popupInfo.name}</p>
           <p>{popupInfo.address}</p>
+          <p>{popupInfo.website}</p>
         </div>
       </Popup>
     )
@@ -87,6 +100,17 @@ class Map extends Component {
             />
           </Marker>
 ))}
+{this.state.userLocation && <Marker 
+latitude={this.state.userLocation.lat}
+longitude={this.state.userLocation.lng}
+offsetTop={-64}
+offsetLeft={-32} > 
+ <img 
+            width={64} 
+            height={64} 
+            src={ppl}/>
+
+</Marker>}
           <div className="nav" style={this.navStyle}>
             <NavigationControl onViewportChange={this._updateViewport} />
           </div>
