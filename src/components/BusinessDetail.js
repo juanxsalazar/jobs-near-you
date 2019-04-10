@@ -7,28 +7,29 @@ class BusinessDetail extends Component {
    }
 
 componentDidMount() {
-   axios
-   .get(`http://localhost:3000/businesses/${this.props.business.id}/jobs`)
-   .then(response => {
-       this.setState({ jobs: response.data})
-   })
+    this.loadJobs(this.props.id)
 }
 
-// renderJobs = () => {
-//     if (this.state.business.jobs.length === 0) {
-//       return <></>
-//     }
+componentWillReceiveProps(newProps) {
+    this.loadJobs(newProps.id)
+}
+
+loadJobs(id) {
+    axios
+    .get(`http://localhost:3000/businesses/${id}/jobs`)
+    .then(response => {
+        this.setState({ jobs: response.data})
+    })
+ 
+}
 
     render() {
         return (
             <div> 
-                <li>
-                {this.props.business.name}, {this.props.business.address}.
-                </li>
                 <ul>
                 {
                         this.state.jobs.map(job => <li>
-                       Job: {job.title}    
+                       {job.title}    
                         </li>)
                     }
                     </ul>

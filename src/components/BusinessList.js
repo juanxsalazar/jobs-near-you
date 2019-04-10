@@ -5,7 +5,7 @@ import Map from '../components/Map'
 
 class BusinessList extends Component {
 state = {
-    businesses: []
+    businesses: [] 
 }
 
 componentDidMount() {

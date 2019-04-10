@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import MapGL, { Marker, NavigationControl, Popup } from "react-map-gl";
 import ppl from '../images/ppl.png'
 import cash from "../images/cash.png";
+import BusinessDetail from "./BusinessDetail";
 
 class Map extends Component {
   constructor(props) {
@@ -63,7 +64,8 @@ class Map extends Component {
         <div className="infobox">
           <p>{popupInfo.name}</p>
           <p>{popupInfo.address}</p>
-          <p>Jobs Posted :</p>
+          <p>Jobs: 
+          <BusinessDetail id={popupInfo.id}/></p>
         </div>
       </Popup>
     )
