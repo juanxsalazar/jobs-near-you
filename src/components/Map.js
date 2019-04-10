@@ -63,7 +63,7 @@ class Map extends Component {
         <div className="infobox">
           <p>{popupInfo.name}</p>
           <p>{popupInfo.address}</p>
-          <p>{popupInfo.website}</p>
+          <p>Jobs Posted :</p>
         </div>
       </Popup>
     )

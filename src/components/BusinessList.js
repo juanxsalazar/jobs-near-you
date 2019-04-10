@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import axios from 'axios'
-import BusinessListItem from './BusinessListItem'
+import BusinessDetail from '../components/BusinessDetail'
 import Map from '../components/Map'
 
 class BusinessList extends Component {
@@ -17,11 +17,14 @@ componentDidMount() {
     render() {
         return (
             <div>
+               <div className="center"> <input type="search" placeholder="Search by Address or Zipcode"></input>
+    <button>Search</button>  
+    <p></p> </div>
                     <Map businesses={this.state.businesses} />
               <ul>
                   {
                       this.state.businesses.map(business => 
-                    <BusinessListItem key={business.id} business={business} />
+                    <BusinessDetail key={business.id} business={business} />
                       )}
             </ul>  
             </div>
